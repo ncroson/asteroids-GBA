@@ -1,4 +1,6 @@
 # asteroids-GBA
+
+Nate Croson
 gameboy advance asteroids demo
 
 programmed in c
