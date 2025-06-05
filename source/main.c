@@ -29,23 +29,23 @@ int px1, px2, px3 = 0;
 int py1, py2, py3 = 0;
 bool shipDestroyed;
 
-OBJ_ATTR *bullet[11];
-int bx[11];
-int by[11];
+OBJ_ATTR *bullet[10];
+int bx[10];
+int by[10];
 
-OBJ_ATTR *bA[11];
-int bAx[11];
-int bAy[11];
+OBJ_ATTR *bA[10];
+int bAx[10];
+int bAy[10];
 int bAtid = 0;
-bool asteroidShot[11];
+bool asteroidShot[10];
 
 
 int aff_value = 0;
 int set_aff_value = 0;
-int shot_aff_value[11];
+int shot_aff_value[10];
 
 
-bool shotFired[11];
+bool shotFired[10];
 int shotCount = 0;
 
 int frames = 0;
@@ -89,7 +89,7 @@ void Setup()
 	shipDestroyed = false;
 	
 	//initalize big Asteroids
-	for(int i = 1; i <= 10; i++)
+	for(int i = 0; i < 10; i++)
 	{
 		bAtid = qran_range(1, 4);
 		
@@ -119,14 +119,14 @@ void Setup()
 	
 	
 	
-	for(int i = 1; i <= 10; i++)
+	for(int i = 0; i < 10; i++)
 	obj_set_attr(bullet[i],
 		ATTR0_SQUARE,			//square 
 		ATTR1_SIZE_8,			//8x8
 		0 | (4+i));					//palbank 0, tile 4
 	
 	
-	for(int i = 1; i <= 10; i++)
+	for(int i = 0; i < 10; i++)
 	{	
 		obj_hide(bullet[i]);
 		
@@ -146,7 +146,7 @@ void Draw()
 	
 	obj_set_pos(ship, x, y);
 	
-	for(int i = 1; i <= 10; i++)
+	for(int i = 0; i < 10; i++)
 		obj_set_pos(bA[i], bAx[i], bAy[i]);
 	
 	//if(shotFired[shotCount] == false);
@@ -235,7 +235,7 @@ void Logic()
 	
 	
 	//bullets
-	for(int i = 1; i <= 10; i++)
+	for(int i = 0; i < 10; i++)
 	{
 		if(shotFired[i] == true)
 		{
@@ -280,154 +280,154 @@ void Logic()
 	//asteroid movement
 	if(frames == 2)
 	{
-		bAy[1] -=  2;
-		bAx[1] -=  3;
+               bAy[0] -=  2;
+               bAx[0] -=  3;
 			
-		bAy[2] +=  3;
-		bAx[2] +=  2;
+               bAy[1] +=  3;
+               bAx[1] +=  2;
 			
-		bAy[3] -=  3;
-		bAx[3] +=  2;
+               bAy[2] -=  3;
+               bAx[2] +=  2;
 			
-		bAy[4] -=  1;
-		bAx[4] -=  2;
+               bAy[3] -=  1;
+               bAx[3] -=  2;
 		
-		bAy[5] +=  3;
-		bAx[5] +=  1;
+               bAy[4] +=  3;
+               bAx[4] +=  1;
 			
-		bAy[6] +=  1;
-		bAx[6] -=  3;
+               bAy[5] +=  1;
+               bAx[5] -=  3;
 			
-		bAy[7] -=  1;
-		bAx[7] +=  2;
+               bAy[6] -=  1;
+               bAx[6] +=  2;
 			
-		bAy[8] -=  3;
-		bAx[8] +=  2;
+               bAy[7] -=  3;
+               bAx[7] +=  2;
 		
-		bAy[9] +=  1;
-		bAx[9] -=  2;
+               bAy[8] +=  1;
+               bAx[8] -=  2;
 			
-		bAy[10] -=  3;
-		bAx[10] +=  2;
+               bAy[9] -=  3;
+               bAx[9] +=  2;
 	}
 		
 	/*
-	if(asteroidShot[1] == false)
-	{
-		bAy[1] -=  .3;
-		bAx[1] -=  .6;
-	}
-	if(asteroidShot[2] == false)
-	{
-		bAy[2] +=  .4;
-		bAx[2] +=  .3;
-	}
-	if(asteroidShot[3] == false)
-	{
-		bAy[3] -=  .4;
-		bAx[3] +=  .2;
-	}
-	if(asteroidShot[4] == false)
-	{
-		bAy[4] -=  .6;
-		bAx[4] -=  .4;
-	}
-	if(asteroidShot[5] == false)
-	{
-		bAy[5] +=  .6;
-		bAx[5] +=  .5;
-	}
-	if(asteroidShot[6] == false)
-	{
-		bAy[6] +=  .6;
-		bAx[6] -=  .3;
-	}
-	if(asteroidShot[7] == false)
-	{
-		bAy[7] -=  .4;
-		bAx[7] +=  .2;
-	}
-	if(asteroidShot[8] == false)
-	{
-		bAy[8] -=  .4;
-		bAx[8] +=  .6;
-	}
-	if(asteroidShot[9] == false)
-	{
-		bAy[9] +=  .6;
-		bAx[9] -=  .5;
-	}
-	if(asteroidShot[10] == false)
-	{
-		bAy[10] -=  .3;
-		bAx[10] +=  .5;
-	}
+       if(asteroidShot[0] == false)
+       {
+               bAy[0] -=  .3;
+               bAx[0] -=  .6;
+       }
+       if(asteroidShot[1] == false)
+       {
+               bAy[1] +=  .4;
+               bAx[1] +=  .3;
+       }
+       if(asteroidShot[2] == false)
+       {
+               bAy[2] -=  .4;
+               bAx[2] +=  .2;
+       }
+       if(asteroidShot[3] == false)
+       {
+               bAy[3] -=  .6;
+               bAx[3] -=  .4;
+       }
+       if(asteroidShot[4] == false)
+       {
+               bAy[4] +=  .6;
+               bAx[4] +=  .5;
+       }
+       if(asteroidShot[5] == false)
+       {
+               bAy[5] +=  .6;
+               bAx[5] -=  .3;
+       }
+       if(asteroidShot[6] == false)
+       {
+               bAy[6] -=  .4;
+               bAx[6] +=  .2;
+       }
+       if(asteroidShot[7] == false)
+       {
+               bAy[7] -=  .4;
+               bAx[7] +=  .6;
+       }
+       if(asteroidShot[8] == false)
+       {
+               bAy[8] +=  .6;
+               bAx[8] -=  .5;
+       }
+       if(asteroidShot[9] == false)
+       {
+               bAy[9] -=  .3;
+               bAx[9] +=  .5;
+       }
 	*/
 	
 	/*
-	if(asteroidShot[1] == true)
-	{
-		bAy[1] = 18;
-		bAx[1] = 250;
-	}
-	if(asteroidShot[2] == true)
-	{
-		bAy[2] =  18;
-		bAx[2] =  250;
-	}
-	
-	if(asteroidShot[3] == true)
-	{
-		bAy[3] =  18;
-		bAx[3] =  250;
-	}
-	if(asteroidShot[4] == true)
-	{
-		bAy[4] =  18;
-		bAx[4] =  250;
-	}
-	if(asteroidShot[5] == true)
-	{
-		bAy[5] =  18;
-		bAx[5] =  250;
-	}
-	if(asteroidShot[6] == true)
-	{
-		bAy[6] =  18;
-		bAx[6] =  250;
-	}
-	if(asteroidShot[7] == true)
-	{
-		bAy[7] =  18;
-		bAx[7] =  250;
-	}
-	if(asteroidShot[8] == true)
-	{
-		bAy[8] =  18;
-		bAx[8] =  250;
-	}
-	if(asteroidShot[9] == true)
-	{
-		bAy[9] =  18;
-		bAx[9] =  250;
-	}
-	if(asteroidShot[10] == true)
-	{
-		bAy[10] =  18;
-		bAx[10] =  250;
-	}
+       if(asteroidShot[0] == true)
+       {
+               bAy[0] = 18;
+               bAx[0] = 250;
+       }
+       if(asteroidShot[1] == true)
+       {
+               bAy[1] =  18;
+               bAx[1] =  250;
+       }
+
+       if(asteroidShot[2] == true)
+       {
+               bAy[2] =  18;
+               bAx[2] =  250;
+       }
+       if(asteroidShot[3] == true)
+       {
+               bAy[3] =  18;
+               bAx[3] =  250;
+       }
+       if(asteroidShot[4] == true)
+       {
+               bAy[4] =  18;
+               bAx[4] =  250;
+       }
+       if(asteroidShot[5] == true)
+       {
+               bAy[5] =  18;
+               bAx[5] =  250;
+       }
+       if(asteroidShot[6] == true)
+       {
+               bAy[6] =  18;
+               bAx[6] =  250;
+       }
+       if(asteroidShot[7] == true)
+       {
+               bAy[7] =  18;
+               bAx[7] =  250;
+       }
+       if(asteroidShot[8] == true)
+       {
+               bAy[8] =  18;
+               bAx[8] =  250;
+       }
+       if(asteroidShot[9] == true)
+       {
+               bAy[9] =  18;
+               bAx[9] =  250;
+       }
 	*/
 	
 	
 	//all asteroids shot reset
-	if(asteroidShot[1] == true && asteroidShot[2] == true && asteroidShot[3] == true && asteroidShot[4] == true && asteroidShot[5] == true
-		&& asteroidShot[6] == true && asteroidShot[7] == true && asteroidShot[8] == true && asteroidShot[9] == true && asteroidShot[10] == true)
+       if(asteroidShot[0] == true && asteroidShot[1] == true && asteroidShot[2] == true && asteroidShot[3] == true && asteroidShot[4] == true
+               && asteroidShot[5] == true && asteroidShot[6] == true && asteroidShot[7] == true && asteroidShot[8] == true && asteroidShot[9] == true)
 		Setup();
 	
 	
 	
 	//asteroid boundries
-	for(int i = 1; i <=10; i++)
+	for(int i = 0; i < 10; i++)
 	{
 		
 		//asteroid boundries
@@ -444,59 +444,59 @@ void Logic()
 	
 	
 	//asteroid bullet collision
-	for(int i = 1; i <= 10; i++)
-	{
-		
-			if(bx[1] >= bAx[i] - 4 && bx[1] + 8 <= bAx[i] + 20 && by[1] >= bAy[i]-4 && by[1] + 8 <= bAy[i] + 20)
-			{
-				obj_hide(bA[i]);
-				asteroidShot[i] = true;
-			}	
-			if(bx[2] >= bAx[i] -4 && bx[2] + 8 <= bAx[i] + 20 && by[2] >= bAy[i]-4 && by[2] + 8 <= bAy[i] + 20)
-			{
-				obj_hide(bA[i]);
-				asteroidShot[i] = true;
-			}
-			if(bx[3] >= bAx[i] -4 && bx[3] + 8 <= bAx[i] + 20 && by[3] >= bAy[i]-4 && by[3] + 8 <= bAy[i] + 20)
-			{
-				obj_hide(bA[i]);
-				asteroidShot[i] = true;
-			}
-			if(bx[4] >= bAx[i] -4&& bx[4] + 8 <= bAx[i] + 20 && by[4] >= bAy[i]-4 && by[4] + 8 <= bAy[i] + 20)
-			{	
-				obj_hide(bA[i]);
-				asteroidShot[i] = true;
-			}
-			if(bx[5] >= bAx[i] -4&& bx[5] + 8 <= bAx[i] + 20 && by[5] >= bAy[i]-4 && by[5] + 8 <= bAy[i] + 20)
-			{
-				obj_hide(bA[i]);
-				asteroidShot[i] = true;
-			}
-			if(bx[6] >= bAx[i] -4&& bx[6] + 8 <= bAx[i] + 20 && by[6] >= bAy[i]-4 && by[6] + 8 <= bAy[i] + 20)
-			{
-				obj_hide(bA[i]);
-				asteroidShot[i] = true;
-			}
-			if(bx[7] >= bAx[i] -4&& bx[7] + 8 <= bAx[i] + 20 && by[7] >= bAy[i]-4 && by[7] + 8 <= bAy[i] + 20)
-			{
-				obj_hide(bA[i]);
-				asteroidShot[i] = true;
-			}
-			if(bx[8] >= bAx[i] -4&& bx[8] + 8 <= bAx[i] + 20 && by[8] >= bAy[i]-4 && by[8] + 8 <= bAy[i] + 20)
-			{
-				obj_hide(bA[i]);
-				asteroidShot[i] = true;
-			}
-			if(bx[9] >= bAx[i] -4&& bx[9] + 8 <= bAx[i] + 20 && by[9] >= bAy[i]-4 && by[9] + 8 <= bAy[i] + 20)
-			{
-				obj_hide(bA[i]);
-				asteroidShot[i] = true;
-			}
-			if(bx[10] >= bAx[i] -4&& bx[10] + 8 <= bAx[i] + 20 && by[10] >= bAy[i]-4 && by[10] + 8 <= bAy[i] + 20)
-			{
-				obj_hide(bA[i]);
-				asteroidShot[i] = true;
-			}
+        for(int i = 0; i < 10; i++)
+        {
+
+                        if(bx[0] >= bAx[i] - 4 && bx[0] + 8 <= bAx[i] + 20 && by[0] >= bAy[i]-4 && by[0] + 8 <= bAy[i] + 20)
+                        {
+                                obj_hide(bA[i]);
+                                asteroidShot[i] = true;
+                        }
+                        if(bx[1] >= bAx[i] -4 && bx[1] + 8 <= bAx[i] + 20 && by[1] >= bAy[i]-4 && by[1] + 8 <= bAy[i] + 20)
+                        {
+                                obj_hide(bA[i]);
+                                asteroidShot[i] = true;
+                        }
+                        if(bx[2] >= bAx[i] -4 && bx[2] + 8 <= bAx[i] + 20 && by[2] >= bAy[i]-4 && by[2] + 8 <= bAy[i] + 20)
+                        {
+                                obj_hide(bA[i]);
+                                asteroidShot[i] = true;
+                        }
+                        if(bx[3] >= bAx[i] -4&& bx[3] + 8 <= bAx[i] + 20 && by[3] >= bAy[i]-4 && by[3] + 8 <= bAy[i] + 20)
+                        {
+                                obj_hide(bA[i]);
+                                asteroidShot[i] = true;
+                        }
+                        if(bx[4] >= bAx[i] -4&& bx[4] + 8 <= bAx[i] + 20 && by[4] >= bAy[i]-4 && by[4] + 8 <= bAy[i] + 20)
+                        {
+                                obj_hide(bA[i]);
+                                asteroidShot[i] = true;
+                        }
+                        if(bx[5] >= bAx[i] -4&& bx[5] + 8 <= bAx[i] + 20 && by[5] >= bAy[i]-4 && by[5] + 8 <= bAy[i] + 20)
+                        {
+                                obj_hide(bA[i]);
+                                asteroidShot[i] = true;
+                        }
+                        if(bx[6] >= bAx[i] -4&& bx[6] + 8 <= bAx[i] + 20 && by[6] >= bAy[i]-4 && by[6] + 8 <= bAy[i] + 20)
+                        {
+                                obj_hide(bA[i]);
+                                asteroidShot[i] = true;
+                        }
+                        if(bx[7] >= bAx[i] -4&& bx[7] + 8 <= bAx[i] + 20 && by[7] >= bAy[i]-4 && by[7] + 8 <= bAy[i] + 20)
+                        {
+                                obj_hide(bA[i]);
+                                asteroidShot[i] = true;
+                        }
+                        if(bx[8] >= bAx[i] -4&& bx[8] + 8 <= bAx[i] + 20 && by[8] >= bAy[i]-4 && by[8] + 8 <= bAy[i] + 20)
+                        {
+                                obj_hide(bA[i]);
+                                asteroidShot[i] = true;
+                        }
+                        if(bx[9] >= bAx[i] -4&& bx[9] + 8 <= bAx[i] + 20 && by[9] >= bAy[i]-4 && by[9] + 8 <= bAy[i] + 20)
+                        {
+                                obj_hide(bA[i]);
+                                asteroidShot[i] = true;
+                        }
 			
 		
 			if(asteroidShot[i] == true)
@@ -535,7 +535,7 @@ void Logic()
 	
 	/*
 	//asteroid ship collision
-	for(int i = 1; i <= 10; i++)
+	for(int i = 0; i < 10; i++)
 	{
 		if(x -2 > bAx[i] - 6 && x + 10 < bAx[i] + 22 && y -2 > bAy[i] - 6 && y +  10 <= bAy[i] + 22)
 		{	//destroy ship
@@ -625,7 +625,7 @@ int main()
 	memcpy32(tile_mem[4], shipTiles, shipTilesLen/4);
 	memcpy32(pal_obj_mem, shipPal, shipPalLen/4);
 	
-	for(int i = 1; i <= 10; i++)
+	for(int i = 0; i < 10; i++)
 	{
 		memcpy(&tile_mem[4][4+i], bulletTiles, bulletTilesLen);
 		memcpy(pal_obj_mem, bulletPal, bulletPalLen);
@@ -641,7 +641,7 @@ int main()
 	memcpy(&tile_mem[4][23], bA3Tiles, bA3TilesLen);
 	memcpy(pal_obj_mem, bA3Pal, bA3PalLen);
 	
-	for(int i = 1; i <= 10; i++)
+	for(int i = 0; i < 10; i++)
 	{
 		bA[i] = &obj_buffer[10 + i];
 	
